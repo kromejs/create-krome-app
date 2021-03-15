@@ -1,7 +1,7 @@
 import {Command, flags} from '@oclif/command'
 
 class CreateKromeApp extends Command {
-  static description = 'describe the command here'
+  static description = 'Generate the krome starter app';
 
   static flags = {
     // add --version flag to show CLI version
@@ -11,9 +11,9 @@ class CreateKromeApp extends Command {
     name: flags.string({char: 'n', description: 'name to print'}),
     // flag with no value (-f, --force)
     force: flags.boolean({char: 'f'}),
-  }
+  };
 
-  static args = [{name: 'file'}]
+  static args = [{name: 'appName', required: true, description: 'the app name'}];
 
   async run() {
     const {args, flags} = this.parse(CreateKromeApp)
@@ -26,4 +26,4 @@ class CreateKromeApp extends Command {
   }
 }
 
-export = CreateKromeApp
+export = CreateKromeApp;
