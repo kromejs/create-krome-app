@@ -2,6 +2,7 @@ import { Command, flags } from '@oclif/command';
 import { renderToFolder } from 'template-file';
 import * as path from 'path';
 import * as fse from 'fs-extra';
+import ora from 'ora';
 
 class CreateKromeApp extends Command {
   static description = 'Generate the krome starter app';
@@ -29,8 +30,10 @@ class CreateKromeApp extends Command {
       },
     };
 
+    const spinner = ora({ text: 'Copy files', indent: 2 }).start();
     await renderToFolder(`${sourceDir}/*.*`, targetDir, data);
-    fse.copySync(`${templateDir}/_dotfiles`, targetDir);
+    await fse.copy(`${templateDir}/_dotfiles`, targetDir);
+    spinner.succeed();
   }
 }
 
