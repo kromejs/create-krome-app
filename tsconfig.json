@@ -10,8 +10,9 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
     "strict": true,
     "target": "es2017"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.ts"]
 }

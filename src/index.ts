@@ -1,8 +1,8 @@
-import { Command, flags } from '@oclif/command';
-import { renderToFolder } from 'template-file';
 import * as path from 'path';
+import { Command, flags } from '@oclif/command';
 import * as fse from 'fs-extra';
 import ora from 'ora';
+import { renderToFolder } from 'template-file';
 
 class CreateKromeApp extends Command {
   static description = 'Generate the krome starter app';
@@ -10,13 +10,19 @@ class CreateKromeApp extends Command {
   static flags = {
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
-    templateName: flags.string({ char: 't', required: true, description: 'template to use' }),
+    templateName: flags.string({
+      char: 't',
+      required: true,
+      description: 'template to use',
+    }),
     force: flags.boolean({ char: 'f' }),
   };
 
-  static args = [{ name: 'APP_NAME', required: true, description: 'the app name' }];
+  static args = [
+    { name: 'APP_NAME', required: true, description: 'the app name' },
+  ];
 
-  async run() {
+  async run(): Promise<void> {
     const { args, flags } = this.parse(CreateKromeApp);
 
     const appName = args['APP_NAME'];
