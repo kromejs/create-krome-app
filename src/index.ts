@@ -1,6 +1,8 @@
 import * as path from 'path';
 import { Command, flags } from '@oclif/command';
+import execa from 'execa';
 import * as fse from 'fs-extra';
+import { bold, underline } from 'kleur';
 import ora from 'ora';
 import { renderToFolder } from 'template-file';
 
@@ -36,10 +38,23 @@ class CreateKromeApp extends Command {
       },
     };
 
+    this.log('');
     const spinner = ora({ text: 'Copy files', indent: 2 }).start();
     await renderToFolder(`${sourceDir}/*.*`, targetDir, data);
     await fse.copy(`${templateDir}/_dotfiles`, targetDir);
     spinner.succeed();
+
+    spinner.text = 'Install dependencies';
+    spinner.start();
+    await execa('yarn', [], { cwd: targetDir, stdio: 'inherit' });
+    spinner.succeed();
+
+    this.log('');
+    this.log(bold(underline('Quickstart')));
+    this.log('');
+    this.log(`  cd ${appName}`);
+    this.log(`  yarn start`);
+    this.log('');
   }
 }
 
