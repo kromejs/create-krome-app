@@ -1,28 +1,36 @@
 import { Command, flags } from '@oclif/command';
+import { renderToFolder } from 'template-file';
+import * as path from 'path';
+import * as fse from 'fs-extra';
 
 class CreateKromeApp extends Command {
   static description = 'Generate the krome starter app';
 
   static flags = {
-    // add --version flag to show CLI version
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({ char: 'n', description: 'name to print' }),
-    // flag with no value (-f, --force)
+    templateName: flags.string({ char: 't', required: true, description: 'template to use' }),
     force: flags.boolean({ char: 'f' }),
   };
 
-  static args = [{ name: 'appName', required: true, description: 'the app name' }];
+  static args = [{ name: 'APP_NAME', required: true, description: 'the app name' }];
 
   async run() {
     const { args, flags } = this.parse(CreateKromeApp);
 
-    const name = flags.name ?? 'world';
-    this.log(`hello ${name} from ./src/index.ts`);
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`);
-    }
+    const appName = args['APP_NAME'];
+    const templateDir = path.resolve(__dirname, '../templates');
+    const sourceDir = path.resolve(templateDir, flags.templateName);
+    const targetDir = path.resolve('.', appName);
+    const data = {
+      app: {
+        name: appName,
+        description: '',
+      },
+    };
+
+    await renderToFolder(`${sourceDir}/*.*`, targetDir, data);
+    fse.copySync(`${templateDir}/_dotfiles`, targetDir);
   }
 }
 

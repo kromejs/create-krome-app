@@ -1,0 +1,10 @@
+.DS_store
+node_modules
+dist/
+.cache
+*.sw*
+**/*.log
+coverage
+.next
+out
+build
