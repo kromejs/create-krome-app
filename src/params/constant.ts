@@ -1,12 +1,6 @@
 import { flags } from '@oclif/command';
 import * as inquirer from 'inquirer';
-
-export type Params = {
-  appName: string;
-  description: string;
-  author: string;
-  templateName: string;
-};
+import { Params } from './interfaces';
 
 export const PROMPT_CONFIGS: Record<
   keyof Params,

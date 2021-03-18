@@ -1,4 +1,3 @@
-import * as path from 'path';
 import { Command, flags } from '@oclif/command';
 import execa from 'execa';
 import * as fse from 'fs-extra';
@@ -6,7 +5,13 @@ import * as inquirer from 'inquirer';
 import { bold, underline } from 'kleur';
 import ora from 'ora';
 import { renderToFolder } from 'template-file';
-import { Params, PROMPT_CONFIGS, paramArgs, paramFlags } from './params';
+import {
+  Params,
+  ParamsContext,
+  PROMPT_CONFIGS,
+  paramArgs,
+  paramFlags,
+} from './params';
 
 class CreateKromeApp extends Command {
   static description = 'Generate the krome starter app';
@@ -20,37 +25,57 @@ class CreateKromeApp extends Command {
 
   static args = [...paramArgs];
 
-  async run(): Promise<void> {
-    const params = await this._getParams();
-    const { appName, templateName } = params;
+  // TODO: better way to inject {@link ParamsContext}
+  context: ParamsContext = ParamsContext.create();
+  spinner = ora({ indent: 2 });
 
-    const templateDir = path.resolve(__dirname, '../templates');
-    const sourceDir = path.resolve(templateDir, templateName);
-    const targetDir = path.resolve('.', appName);
+  async run(): Promise<void> {
+    await this.initContext();
 
     this.log('');
-    const spinner = ora({ text: 'Copy files', indent: 2 }).start();
-    await renderToFolder(`${sourceDir}/*.*`, targetDir, params);
-    await fse.copy(`${templateDir}/_dotfiles`, targetDir);
-    spinner.succeed();
 
-    spinner.text = 'Install dependencies';
-    spinner.start();
-    await execa('yarn', [], { cwd: targetDir, stdio: 'inherit' });
-    spinner.succeed();
+    await this.copyFiles();
+    await this.installDependencies();
 
     this.log('');
     this.log(bold(underline('Quickstart')));
     this.log('');
-    this.log(`  cd ${appName}`);
+    this.log(`  cd ${this.context.appName}`);
     this.log(`  yarn start`);
     this.log('');
+  }
+
+  async initContext(): Promise<void> {
+    const params = await this.getParams();
+    Object.assign(this.context, params);
+  }
+
+  async copyFiles(): Promise<void> {
+    const { appName, author, description } = this.context;
+    this.spinner.text = 'Copy files';
+    await renderToFolder(
+      `${this.context.sourceDir}/*.*`,
+      this.context.targetDir,
+      { appName, author, description },
+    );
+    await fse.copy(
+      `${this.context.templateDir}/_dotfiles`,
+      this.context.targetDir,
+    );
+    this.spinner.succeed();
+  }
+
+  async installDependencies(): Promise<void> {
+    this.spinner.text = 'Install dependencies';
+    this.spinner.start();
+    await execa('yarn', [], { cwd: this.context.targetDir, stdio: 'inherit' });
+    this.spinner.succeed();
   }
 
   /**
    * Collect all the required information from args, flags, or prompt
    */
-  async _getParams(): Promise<Params> {
+  async getParams(): Promise<Params> {
     const {
       args,
       flags: { author = '', description = '', templateName = '' },
