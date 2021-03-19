@@ -28,7 +28,16 @@ export const PROMPT_CONFIGS: Record<
     name: 'templateName',
     message: 'choose the app template',
     type: 'list',
-    choices: ['minimal-typescript'],
+    choices: [
+      {
+        name: 'load content script automatically',
+        value: 'autoload',
+      },
+      {
+        name: 'load content script manually',
+        value: 'manually-load',
+      },
+    ],
   },
 };
 

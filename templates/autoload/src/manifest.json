@@ -1,0 +1,25 @@
+{
+  "name": "{{ appName }}",
+  "short_name": "{{ appName }}",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "description": "{{ description }}",
+  "homepage_url": "",
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  },
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": ["assets/*"]
+}

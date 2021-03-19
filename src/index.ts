@@ -53,14 +53,18 @@ class CreateKromeApp extends Command {
   async copyFiles(): Promise<void> {
     const { appName, author, description } = this.context;
     this.spinner.text = 'Copy files';
+
+    await fse.copy(`${this.context.templateDir}/_base`, this.context.targetDir);
+    await fse.copy(`${this.context.sourceDir}`, this.context.targetDir);
     await renderToFolder(
-      `${this.context.sourceDir}/*.*`,
+      `${this.context.targetDir}/*.*`,
       this.context.targetDir,
       { appName, author, description },
     );
-    await fse.copy(
-      `${this.context.templateDir}/_dotfiles`,
-      this.context.targetDir,
+    await renderToFolder(
+      `${this.context.targetDir}/src/*.*`,
+      `${this.context.targetDir}/src`,
+      { appName, author, description },
     );
     this.spinner.succeed();
   }
