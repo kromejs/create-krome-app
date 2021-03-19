@@ -10,6 +10,7 @@ export class ParamsContext implements Params {
   description = '';
   author = '';
   templateName = '';
+  doInstall = true;
 
   templateDir = path.resolve(__dirname, '../../templates');
 

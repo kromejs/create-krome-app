@@ -26,18 +26,26 @@ export const PROMPT_CONFIGS: Record<
   },
   templateName: {
     name: 'templateName',
-    message: 'choose the app template',
+    message: 'template to use',
     type: 'list',
     choices: [
       {
         name: 'load content script automatically',
         value: 'autoload',
+        short: 'autoload',
       },
       {
         name: 'load content script manually',
         value: 'manually-load',
+        short: 'manually-load',
       },
     ],
+  },
+  doInstall: {
+    name: 'doInstall',
+    message: 'install dependencies',
+    type: 'confirm',
+    default: true,
   },
 };
 
@@ -54,5 +62,8 @@ export const paramFlags = {
   }),
   description: flags.string({
     description: 'app description',
+  }),
+  doInstall: flags.boolean({
+    description: 'install dependencies',
   }),
 };

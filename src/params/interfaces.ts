@@ -4,4 +4,5 @@ export type Params = {
   description: string;
   author: string;
   templateName: string;
+  doInstall: boolean;
 };
