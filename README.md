@@ -22,7 +22,6 @@ npx create-krome-app -h
 
 # Commands
 
-<!-- commands -->
 * [`create-krome-app [APPNAME]`](#create-krome-app-appname)
 
 ## `create-krome-app [APPNAME]`
@@ -47,4 +46,3 @@ OPTIONS
 ```
 
 _See code: [src/index.ts](https://github.com/kromejs/create-krome-app/blob/v0.1.4/src/index.ts)_
-<!-- commandsstop -->

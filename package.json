@@ -69,7 +69,6 @@
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "commands": "./lib",
     "bin": "create-krome-app"
   },
   "repository": "kromejs/create-krome-app",
