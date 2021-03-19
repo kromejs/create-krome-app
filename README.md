@@ -46,5 +46,5 @@ OPTIONS
   --doInstall                      install dependencies
 ```
 
-_See code: [src/index.ts](https://github.com/hankchiutw/create-krome-app/blob/v0.1.3/src/index.ts)_
+_See code: [src/index.ts](https://github.com/hankchiutw/create-krome-app/blob/v0.1.4/src/index.ts)_
 <!-- commandsstop -->
