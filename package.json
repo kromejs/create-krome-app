@@ -2,7 +2,7 @@
   "name": "create-krome-app",
   "description": "Kick off modern Chrome extension development instantly",
   "version": "0.1.4",
-  "author": "hank @hankchiutw",
+  "author": "hankchiutw",
   "bin": {
     "create-krome-app": "bin/run"
   },
@@ -18,7 +18,7 @@
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
   },
-  "bugs": "https://github.com/hankchiutw/create-krome-app/issues",
+  "bugs": "https://github.com/kromejs/create-krome-app/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -58,7 +58,7 @@
     "/lib",
     "/templates"
   ],
-  "homepage": "https://github.com/hankchiutw/create-krome-app",
+  "homepage": "https://github.com/kromejs/create-krome-app",
   "keywords": [
     "chrome",
     "extension",
@@ -72,6 +72,6 @@
     "commands": "./lib",
     "bin": "create-krome-app"
   },
-  "repository": "hankchiutw/create-krome-app",
+  "repository": "kromejs/create-krome-app",
   "types": "lib/index.d.ts"
 }
