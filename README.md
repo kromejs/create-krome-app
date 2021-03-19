@@ -10,14 +10,24 @@ Kick off modern Chrome extension development instantly
 * [Commands](#commands)
 
 # Usage
+Execute and follow the prompt:
 ```sh
 npx create-krome-app
 ```
 
-# Commands
+To see all options:
 ```sh
 npx create-krome-app -h
 ```
+
+# Commands
+
+<!-- commands -->
+* [`create-krome-app [APPNAME]`](#create-krome-app-appname)
+
+## `create-krome-app [APPNAME]`
+
+Generate the krome starter app
 
 ```
 USAGE
@@ -33,4 +43,8 @@ OPTIONS
   -t, --templateName=templateName  template to use
   -v, --version                    show CLI version
   --description=description        app description
+  --doInstall                      install dependencies
 ```
+
+_See code: [src/index.ts](https://github.com/hankchiutw/create-krome-app/blob/v0.1.2/src/index.ts)_
+<!-- commandsstop -->

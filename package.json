@@ -69,6 +69,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
+    "commands": "./lib",
     "bin": "create-krome-app"
   },
   "repository": "hankchiutw/create-krome-app",
