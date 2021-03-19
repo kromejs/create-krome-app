@@ -20,6 +20,8 @@
   "author": "{{ author }}",
   "license": "MIT",
   "keywords": [
+    "chrome",
+    "extension",
     "chrome extension",
     "esm",
     "snowpack"

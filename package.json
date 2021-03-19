@@ -60,7 +60,11 @@
   ],
   "homepage": "https://github.com/hankchiutw/create-krome-app",
   "keywords": [
-    "oclif"
+    "chrome",
+    "extension",
+    "chrome extension",
+    "esm",
+    "snowpack"
   ],
   "license": "MIT",
   "main": "lib/index.js",
