@@ -62,6 +62,11 @@ class CreateKromeApp extends Command {
       { appName, author, description },
     );
     await renderToFolder(
+      `${this.context.targetDir}/LICENSE`,
+      this.context.targetDir,
+      { appName, author, description },
+    );
+    await renderToFolder(
       `${this.context.targetDir}/src/*.*`,
       `${this.context.targetDir}/src`,
       { appName, author, description },
