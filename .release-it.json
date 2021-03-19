@@ -1,7 +1,5 @@
 {
-  "hooks": {
-    "after:bump": "yarn bump:manifest"
-  },
+  "hooks": {},
   "git": {
     "push": false,
     "commitMessage": "chore: bump to ${version}"
