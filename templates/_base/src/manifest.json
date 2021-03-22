@@ -15,18 +15,11 @@
     "persistent": false
   },
   "permissions": ["activeTab"],
-  "browser_action": {
-    "default_title": "Click or press Cmd/Ctrl+Shift+A to launch",
-    "name": "Click or press Cmd/Ctrl+Shift+A to launch"
-  },
-  "commands": {
-    "toggle-crx": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+A",
-        "mac": "Command+Shift+A"
-      },
-      "description": "Toggle"
+  "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "js": ["content.js"]
     }
-  },
+  ],
   "web_accessible_resources": ["assets/*"]
 }
