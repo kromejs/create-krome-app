@@ -1,5 +1,3 @@
-import { ScriptLoader, enableHotReload } from 'krome';
+import { krome } from 'krome';
 
-enableHotReload();
-
-const loader = new ScriptLoader();
+krome.injectOnCommands = ['toggle-crx'];
