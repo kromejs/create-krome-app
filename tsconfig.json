@@ -5,7 +5,7 @@
     "importHelpers": true,
     "module": "commonjs",
     "outDir": "lib",
-    "rootDir": ".",
+    "rootDir": "src",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "esModuleInterop": true,
@@ -15,5 +15,5 @@
     "strict": true,
     "target": "es2017"
   },
-  "include": ["src/**/*.ts", "templates/**/*"]
+  "include": ["src/**/*.ts"]
 }
