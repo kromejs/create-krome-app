@@ -14,7 +14,7 @@ export class ParamsContext implements Params {
   doInstall = true;
 
   templateDir = path.resolve(__dirname, '../../templates');
-  baseDir = path.resolve(__dirname, '../../_base');
+  baseDir = path.resolve(this.templateDir, '_base');
 
   get sourceDir(): string {
     return path.resolve(this.templateDir, this.templateName);
