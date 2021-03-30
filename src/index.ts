@@ -19,7 +19,6 @@ class CreateKromeApp extends Command {
   static flags = {
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
-    force: flags.boolean({ char: 'f' }),
     ...paramFlags,
   };
 
