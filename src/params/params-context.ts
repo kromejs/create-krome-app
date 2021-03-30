@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { Params } from './interfaces';
+import type { Params } from './interfaces';
 
 export class ParamsContext implements Params {
   static create(): ParamsContext {

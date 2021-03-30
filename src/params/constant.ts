@@ -1,6 +1,6 @@
 import { flags } from '@oclif/command';
-import * as inquirer from 'inquirer';
-import { Params } from './interfaces';
+import type * as inquirer from 'inquirer';
+import type { Params } from './interfaces';
 
 export const PROMPT_CONFIGS: Record<
   keyof Params,
