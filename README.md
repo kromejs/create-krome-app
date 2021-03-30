@@ -6,8 +6,11 @@ Kick off modern Chrome extension development instantly
 [![Version](https://img.shields.io/npm/v/create-krome-app.svg)](https://npmjs.org/package/create-krome-app)
 [![License](https://img.shields.io/npm/l/create-krome-app.svg)](https://github.com/kromejs/create-krome-app/blob/master/package.json)
 
-* [Usage](#usage)
-* [Commands](#commands)
+#### Features
+- Starter app with [snowpack](https://www.snowpack.dev/)
+- Typescript
+- Autoload or manually load the content script
+- Support [Svelte](https://svelte.dev/)
 
 # Usage
 Execute and follow the prompt:
@@ -37,7 +40,7 @@ ARGUMENTS
 
 OPTIONS
   -a, --author=author              author name
-  -f, --force
+  -f, --framework=framework        framework to use
   -h, --help                       show CLI help
   -t, --templateName=templateName  template to use
   -v, --version                    show CLI version
@@ -45,4 +48,4 @@ OPTIONS
   --doInstall                      install dependencies
 ```
 
-_See code: [src/index.ts](https://github.com/kromejs/create-krome-app/blob/v0.1.4/src/index.ts)_
+_See code: [src/index.ts](src/index.ts)_
