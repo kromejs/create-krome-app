@@ -37,6 +37,9 @@ class CreateKromeApp extends Command {
     await this.copyFiles();
     this.log('');
 
+    await this.renderTemplates();
+    this.log('');
+
     if (this.context.doInstall) {
       await this.installDependencies();
       this.log('');
@@ -55,11 +58,19 @@ class CreateKromeApp extends Command {
   }
 
   async copyFiles(): Promise<void> {
-    const { appName, author, description } = this.context;
+    const { baseDir, sourceDir, frameworkDir, targetDir } = this.context;
     this.spinner.text = 'Copy files';
 
-    await fse.copy(`${this.context.templateDir}/_base`, this.context.targetDir);
-    await fse.copy(`${this.context.sourceDir}`, this.context.targetDir);
+    await fse.copy(baseDir, targetDir);
+    await fse.copy(sourceDir, targetDir);
+    await fse.copy(frameworkDir, targetDir);
+
+    this.spinner.succeed();
+  }
+
+  async renderTemplates(): Promise<void> {
+    const { appName, author, description } = this.context;
+    this.spinner.text = 'Render templates';
 
     // TODO: create PR on template-file
     await renderToFolder(
@@ -92,7 +103,13 @@ class CreateKromeApp extends Command {
   async getParams(): Promise<Params> {
     const {
       args,
-      flags: { author = '', description = '', templateName = '', doInstall },
+      flags: {
+        author = '',
+        description = '',
+        templateName = '',
+        framework = '',
+        doInstall,
+      },
     } = this.parse(CreateKromeApp);
 
     const params: Params = {
@@ -100,6 +117,7 @@ class CreateKromeApp extends Command {
       author,
       description,
       templateName,
+      framework,
       doInstall,
     };
 

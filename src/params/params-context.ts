@@ -10,12 +10,18 @@ export class ParamsContext implements Params {
   description = '';
   author = '';
   templateName = '';
+  framework = '';
   doInstall = true;
 
   templateDir = path.resolve(__dirname, '../../templates');
+  baseDir = path.resolve(__dirname, '../../_base');
 
   get sourceDir(): string {
     return path.resolve(this.templateDir, this.templateName);
+  }
+
+  get frameworkDir(): string {
+    return path.resolve(this.templateDir, this.framework);
   }
 
   get targetDir(): string {

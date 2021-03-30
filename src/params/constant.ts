@@ -41,6 +41,23 @@ export const PROMPT_CONFIGS: Record<
       },
     ],
   },
+  framework: {
+    name: 'framework',
+    message: 'framework to use',
+    type: 'list',
+    choices: [
+      {
+        name: 'None',
+        value: '_blank',
+        short: 'None',
+      },
+      {
+        name: 'Svelte',
+        value: '_svelte',
+        short: 'Svelte',
+      },
+    ],
+  },
   doInstall: {
     name: 'doInstall',
     message: 'install dependencies',
@@ -55,6 +72,10 @@ export const paramFlags = {
   templateName: flags.string({
     char: 't',
     description: 'template to use',
+  }),
+  framework: flags.string({
+    char: 'f',
+    description: 'framework to use',
   }),
   author: flags.string({
     char: 'a',
