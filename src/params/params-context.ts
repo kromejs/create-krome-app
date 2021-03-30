@@ -13,7 +13,7 @@ export class ParamsContext implements Params {
   framework = '';
   doInstall = true;
 
-  templateDir = path.resolve(__dirname, '../templates');
+  templateDir = path.resolve(__dirname, '../../templates');
   baseDir = path.resolve(this.templateDir, '_base');
 
   get sourceDir(): string {

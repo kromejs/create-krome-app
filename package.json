@@ -11,7 +11,7 @@
     "test": "echo NO TESTS",
     "build": "rm -rf lib && tsc -b && oclif-dev readme",
     "bump": "HUSKY=0 release-it --ci",
-    "lint": "tsc --noEmit && eslint './src/**/*.ts'",
+    "lint": "tsc --noEmit && eslint './src/**/*.ts' './templates/**/*.ts'",
     "lint:fix": "yarn lint --fix && pretty-quick --staged",
     "version": "oclif-dev readme && git add README.md",
     "postinstall": "husky install",
