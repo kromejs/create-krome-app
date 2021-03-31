@@ -1,0 +1,3 @@
+# Having this empty file to keep `.gitignore` published.
+# But `.gitignore` doesn't work when publishing because the `files` field has higher priority.
+# See: https://github.com/yarnpkg/yarn/issues/685#issuecomment-484304385
