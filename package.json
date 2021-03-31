@@ -1,7 +1,7 @@
 {
   "name": "create-krome-app",
   "description": "Kick off modern Chrome extension development instantly",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "author": "hankchiutw",
   "bin": {
     "create-krome-app": "bin/run"
