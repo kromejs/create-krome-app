@@ -18,8 +18,9 @@
   "content_scripts": [
     {
       "matches": ["https://*/*"],
-      "js": ["content.js"]
+      "js": ["content.js"],
+      "css": ["content.css"]
     }
   ],
-  "web_accessible_resources": ["assets/*"]
+  "web_accessible_resources": ["assets/*", "content.css"]
 }
