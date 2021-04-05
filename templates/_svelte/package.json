@@ -12,7 +12,7 @@
     "bump:manifest": "sed -i '' \"/\\\"version\\\":/s/\\\"[0-9.]*\\\"/\\\"$npm_package_version\\\"/\" ./src/manifest.json",
     "lint": "tsc --noEmit && svelte-check && eslint './src/**/*.{ts,tsx,js,jsx}'",
     "lint:fix": "yarn lint --fix && pretty-quick --staged",
-    "test": "jest",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\"}' mocha",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable"
@@ -37,7 +37,10 @@
   "devDependencies": {
     "@snowpack/plugin-svelte": "^3.6.0",
     "@tsconfig/svelte": "^1.0.10",
+    "@types/chai": "^4.2.16",
+    "@types/mocha": "^8.2.2",
     "@types/node": "^14.14.31",
+    "@types/sinon-chrome": "^2.2.10",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
     "eslint": "^7.20.0",
@@ -46,13 +49,16 @@
     "husky": "^5",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
+    "mocha": "^8.3.2",
     "nodemon": "^2.0.7",
     "pinst": "^2.1.6",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "release-it": "^14.4.1",
+    "sinon-chrome": "^3.0.1",
     "snowpack": "^3.0.13",
     "svelte-check": "^1.3.0",
+    "ts-node": "^9.1.1",
     "typescript": "^4.2.2"
   },
   "dependencies": {
