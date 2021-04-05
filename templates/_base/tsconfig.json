@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
+    "target": "esnext",
+    "module": "esnext",
     "allowJs": true,
     "checkJs": true,
     "declaration": true,
@@ -17,5 +17,5 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*"]
 }

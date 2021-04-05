@@ -10,7 +10,7 @@
     "postbuild": "cd dist && zip -r {{ appName }}_${npm_package_version}.zip *",
     "bump": "HUSKY=0 release-it --ci",
     "bump:manifest": "sed -i '' \"/\\\"version\\\":/s/\\\"[0-9.]*\\\"/\\\"$npm_package_version\\\"/\" ./src/manifest.json",
-    "lint": "tsc --noEmit && eslint './src/**/*.{ts,tsx,js,jsx}'",
+    "lint": "tsc --noEmit && svelte-check && eslint './src/**/*.{ts,tsx,js,jsx}'",
     "lint:fix": "yarn lint --fix && pretty-quick --staged",
     "test": "jest",
     "postinstall": "husky install",
@@ -52,6 +52,7 @@
     "pretty-quick": "^3.1.0",
     "release-it": "^14.4.1",
     "snowpack": "^3.0.13",
+    "svelte-check": "^1.3.0",
     "typescript": "^4.2.2"
   },
   "dependencies": {
