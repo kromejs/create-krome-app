@@ -35,6 +35,7 @@ class CreateKromeApp extends Command {
 
     await this.stageRunner.runAll();
 
+    this.log('');
     this.log(bold(underline('Quickstart')));
     this.log('');
     this.log(`  cd ${this.context.appName}`);
@@ -93,7 +94,6 @@ class CreateKromeApp extends Command {
 
     this.stageRunner.afterEach = () => {
       this.spinner.succeed();
-      this.log('');
     };
   }
 }

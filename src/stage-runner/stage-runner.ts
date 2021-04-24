@@ -1,6 +1,11 @@
 import type { ParamsContext } from '../params';
 import type { Stage } from './interfaces';
-import { copyFiles, renderTemplates, installDependencies } from './stages';
+import {
+  copyFiles,
+  renderTemplates,
+  installDependencies,
+  initVersionControl,
+} from './stages';
 
 export class StageRunner {
   beforeEach: (stage: Stage) => void = () => null;
@@ -32,6 +37,10 @@ export class StageRunner {
       {
         label: 'Render templates',
         callback: renderTemplates,
+      },
+      {
+        label: 'Init version control',
+        callback: initVersionControl,
       },
       {
         label: 'Install dependencies',
