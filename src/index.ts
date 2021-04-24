@@ -1,10 +1,7 @@
 import { Command, flags } from '@oclif/command';
-import execa from 'execa';
-import * as fse from 'fs-extra';
 import * as inquirer from 'inquirer';
 import { bold, underline } from 'kleur';
 import ora from 'ora';
-import { renderToFolder } from 'template-file';
 import {
   Params,
   ParamsContext,
@@ -12,6 +9,7 @@ import {
   paramArgs,
   paramFlags,
 } from './params';
+import { StageRunner, Stage } from './stage-runner';
 
 class CreateKromeApp extends Command {
   static description = 'Generate the krome starter app';
@@ -26,23 +24,16 @@ class CreateKromeApp extends Command {
 
   // TODO: better way to inject {@link ParamsContext}
   context: ParamsContext = ParamsContext.create();
+  stageRunner: StageRunner = new StageRunner(this.context);
   spinner = ora({ indent: 2 });
 
   async run(): Promise<void> {
     await this.initContext();
+    this.configStageRunner();
 
     this.log('');
 
-    await this.copyFiles();
-    this.log('');
-
-    await this.renderTemplates();
-    this.log('');
-
-    if (this.context.doInstall) {
-      await this.installDependencies();
-      this.log('');
-    }
+    await this.stageRunner.runAll();
 
     this.log(bold(underline('Quickstart')));
     this.log('');
@@ -54,46 +45,6 @@ class CreateKromeApp extends Command {
   async initContext(): Promise<void> {
     const params = await this.getParams();
     Object.assign(this.context, params);
-  }
-
-  async copyFiles(): Promise<void> {
-    const { baseDir, sourceDir, frameworkDir, targetDir } = this.context;
-    this.spinner.text = 'Copy files';
-
-    await fse.copy(baseDir, targetDir);
-    await fse.copy(sourceDir, targetDir);
-    await fse.copy(frameworkDir, targetDir);
-
-    this.spinner.succeed();
-  }
-
-  async renderTemplates(): Promise<void> {
-    const { appName, author, description } = this.context;
-    this.spinner.text = 'Render templates';
-
-    // TODO: create PR on template-file
-    await renderToFolder(
-      `${this.context.targetDir}/*.*`,
-      this.context.targetDir,
-      { appName, author, description },
-    );
-    await renderToFolder(
-      `${this.context.targetDir}/LICENSE`,
-      this.context.targetDir,
-      { appName, author, description },
-    );
-    await renderToFolder(
-      `${this.context.targetDir}/src/*.*`,
-      `${this.context.targetDir}/src`,
-      { appName, author, description },
-    );
-    this.spinner.succeed();
-  }
-
-  async installDependencies(): Promise<void> {
-    await execa('yarn', [], { cwd: this.context.targetDir, stdio: 'inherit' });
-    this.spinner.text = 'Install dependencies';
-    this.spinner.succeed();
   }
 
   /**
@@ -132,6 +83,17 @@ class CreateKromeApp extends Command {
     return {
       ...params,
       ...safeParams,
+    };
+  }
+
+  configStageRunner(): void {
+    this.stageRunner.beforeEach = (stage: Stage) => {
+      this.spinner.text = stage.label;
+    };
+
+    this.stageRunner.afterEach = () => {
+      this.spinner.succeed();
+      this.log('');
     };
   }
 }
