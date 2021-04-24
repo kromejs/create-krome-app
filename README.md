@@ -15,12 +15,16 @@ Kick off modern Chrome extension development instantly
 # Usage
 Execute and follow the prompt:
 ```sh
-npx create-krome-app
+yarn exec create-krome-app
+```
+or
+```sh
+yarn create krome-app
 ```
 
 To see all options:
 ```sh
-npx create-krome-app -h
+yarn exec create-krome-app -h
 ```
 
 # Commands
