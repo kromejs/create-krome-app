@@ -7,4 +7,5 @@ export async function copyFiles(context: ParamsContext): Promise<void> {
   await fse.copy(baseDir, targetDir);
   await fse.copy(sourceDir, targetDir);
   await fse.copy(frameworkDir, targetDir);
+  await fse.remove(`${targetDir}/.gitkeep`);
 }
